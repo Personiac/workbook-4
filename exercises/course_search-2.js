@@ -36,6 +36,13 @@ let courses = [
     StartDate: "04/25/23",
     Fee: "50.00",
   },
+  {
+    CourseId: "VAMP100",
+    Title: "Introduction to Vampirism",
+    Location: "Classroom 3",
+    StartDate: "10/01/23",
+    Fee: "20.00",
+  },
 ];
 
 // When does the PROG200 course start?
@@ -44,42 +51,73 @@ let courses = [
 // What classes meet in "Classroom 1"?
 
 function courseSearch(courseList) {
-  let cheapCourses = [];
-  let class1Courses = [];
+  let cheapCoursesFee = [];
+  let class1CoursesMeet = [];
 
+  
   for (const course of courseList) {
+    let courseFee = parseFloat(course.Fee);
+
     if (course.CourseId == "PROG200") {
       console.log(`${course.CourseId} starts at ${course.StartDate}.`);
     }
     if (course.CourseId == "PROJ500") {
       console.log(`${course.CourseId} has the title of ${course.Title}.`);
     }
-    if (course.Fee <= 50) {
-      cheapCourses.push(course);
+    if (courseFee <= 50) {
+      cheapCoursesFee.push(course);
     }
     if (course.Location == "Classroom 1") {
-      class1Courses.push(course);
+      class1CoursesMeet.push(course);
     }
   }
+
   console.log("-----------------");
-  console.log(cheapCourses);
+  console.log(`Here are all the courses that are $50 or less:`);
+  for (const course of cheapCoursesFee) {
+    console.log(`${course.CourseId}: $${course.Fee}`);
+  }
+  const c1Courses = class1CoursesMeet.map(course => ({CourseId: course.CourseId, Title: course.Title})); //map() function in use
   console.log("-----------------");
-  console.log(class1Courses);
+  console.log(`Here are all the classes that meet in Classrom 1:`);
+  for (const course of c1Courses) {
+    console.log(`${course.CourseId}: ${course.Title}`);
+  }
+  console.log("-----------------");
+  console.log(`More info on Classroom 1 courses:`);
+  for (const course of class1CoursesMeet) {
+    console.log(`${course.CourseId}: ${course.Title}, Fee: $${course.Fee}, Starts: ${course.StartDate}`);
+  }
+  
 }
 
-function courseStartsIn2023(courseList, startingYear) {
-
+function getCourses2023(courseList, startingYear) {
+  
   let startsIn2023 = [];
-
+  
   for (const course of courseList) {
     if (course.StartDate.endsWith(startingYear)) {
-    startsIn2023.push(course);
+      startsIn2023.push(course);
     }  
+  }
+  console.log(`Here is a list of all the courses that start in 20${startingYear}:`);
+  for (const course of startsIn2023) {
+    console.log(`${course.CourseId}: ${course.StartDate} `);
   }
   return startsIn2023;
 }
 
-// courseSearch(courses);
-const test = courseStartsIn2023(courses, "23")
 
-console.log(test);
+courseSearch(courses);
+console.log("-----------------");
+getCourses2023(courses, "22");
+console.log("-----------------");
+getCourses2023(courses, "23");
+
+// console.log("-----------------");
+// const courses2023 = getCourses2023(courses, "23");
+// const courseIds = courses2023.map(course => course.CourseId); 
+// //map() function collects courseId properties from each course object in courses2023 array
+// //map() returns all collected values from courses2023 array and creates a new array called courseIds using the collected values 
+
+// console.log(`Here is a list of all the courses that start in 2023: ${courseIds}.`);

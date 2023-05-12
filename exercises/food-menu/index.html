@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+  </head>
+  <body>
+    <main>
+      <select id="category-list" onchange="loadItemList();">
+        <option value="dessert">Dessert</option>
+        <option value="drinks">Drinks</option>
+        <option value="entrees">Entrees</option>
+      </select>
+      <h2>Menu Items</h2>
+      <select id="menuItems" size="3">
+      </select>
+    </main>
+    <script>
+      "use strict";
+
+      const categoryList = document.querySelector("#category-list");
+      const menuItems = document.querySelector("#menuItems");
+
+      let menu = {
+        drinks: ["Water", "Tea", "Sweet Tea", "Coke", "Dr. Pepper", "Sprite"],
+
+        entrees: [
+          "Hamburger w/ Fries",
+          "Grilled Cheese w/ Tater Tots",
+          "Grilled Chicken w/ Veggies",
+          "Chicken Fried Steak w/ Mashed Potatoes",
+          "Fried Shrimp w/ Coleslaw",
+          "Veggie Plate",
+        ],
+
+        desserts: ["Cheesecake", "Chocolate Cake", "Snickerdoodle Cookie"],
+      };
+
+      let selectedMenuOption = document.createElement("option");
+        selectedMenuOption.value = " ";
+        selectedMenuOption.textContent = "Select Option...";
+        menuItems.appendChild(selectedMenuOption);
+        
+      function loadItemList() { 
+        switch (categoryList.value) {
+            case "dessert":
+            //code stuff
+            displayMenuItems(menu.desserts);
+            break; //Stop doing stuff for this case
+            case "drinks":
+            //code stuff
+            displayMenuItems(menu.drinks);
+            break; //Stop doing stuff for this case
+            case "entrees":
+            //code stuff
+            displayMenuItems(menu.entrees);
+            break; //Stop doing stuff for this case
+        }
+      }
+
+
+
+      function displayMenuItems(menuItemList) { 
+        menuItems.innerHTML = "";
+        for (const item of menuItemList) {
+            const menuOption = new Option(item);
+            menuItems.appendChild(menuOption);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Football</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css">
+  </head>
+  <body>
+    <h2>Football</h2>
+    <select name="states" id="states-list" onchange="displaySelectedState();">
+    </select>
+    <!-- <button onclick="displaySelectedState();">Display Selected State</button> -->
+    <p id="message-paragraph"></p>
+    <script>
+      "use strict";
+
+      const states = [
+        { name: "Arizona", abbrev: "AZ", team: "Arizona Cardinals" },
+        { name: "California", abbrev: "CA", team: "Los Angeles Rams" },
+        { name: "California", abbrev: "CA-2", team: "Los Angeles Chargers" },
+        { name: "California", abbrev: "CA-3", team: "San Francisco 49ers" },
+        { name: "Colorado", abbrev: "CO", team: "Denver Broncos" },
+        { name: "Florida", abbrev: "FL", team: "Miami Dolphins" },
+        { name: "Florida", abbrev: "FL-2", team: "Jacksonville Jaguars" },
+        { name: "Florida", abbrev: "FL-3", team: "Tampa Bay Buccaneers" },
+        { name: "Georgia", abbrev: "GA", team: "Atlanta Falcons" },
+        { name: "Illinois", abbrev: "IL", team: "Chicago Bears" },
+        { name: "Indiana", abbrev: "IN", team: "Indianapolis Colts" },
+        { name: "Louisiana", abbrev: "LA", team: "New Orleans Saints" },
+        { name: "Maryland", abbrev: "MD", team: "Baltimore Ravens" },
+        { name: "Massachusetts", abbrev: "MA", team: "New England Patriots" },
+        { name: "Michigan", abbrev: "MI", team: "Detroit Lions" },
+        { name: "Minnesota", abbrev: "MN", team: "Minnesota Vikings" },
+        { name: "Missouri", abbrev: "MO", team: "Kansas City Chiefs" },
+        { name: "Nevada", abbrev: "NV", team: "Las Vegas Raiders" },
+        { name: "New York", abbrev: "NY", team: "Buffalo Bills" },
+        { name: "North Carolina", abbrev: "NC", team: "Carolina Panthers" },
+        { name: "Ohio", abbrev: "OH", team: "Cincinnati Bengals" },
+        { name: "Ohio", abbrev: "OH", team: "Cleveland Browns" },
+        { name: "Pennsylvania", abbrev: "PA", team: "Philadelphia Eagles" },
+        { name: "Pennsylvania", abbrev: "PA-2", team: "Pittsburgh Steelers" },
+        { name: "Tennessee", abbrev: "TN", team: "Tennessee Titans" },
+        { name: "Texas", abbrev: "TX", team: "Dallas Cowboys" },
+        { name: "Texas", abbrev: "TX", team: "Houston Texans" },
+        { name: "Washington", abbrev: "WA", team: "Seattle Seahawks" },
+        { name: "Wisconsin", abbrev: "WI", team: "Green Bay Packers" },
+      ];
+
+      const statesList = document.getElementById("states-list");
+
+      //statesList.onchange = displaySelectedState;
+
+      function loadStatesList() {
+        //document.querySelector("statesList");
+
+        let selectedStateOption = document.createElement("option");
+        selectedStateOption.value = " ";
+        selectedStateOption.textContent = "Select state...";
+        statesList.appendChild(selectedStateOption);
+        
+        for (const state of states) {
+          
+          //Main way to create new HTML stuff
+          //let option = document.createElement("option");
+          //option.value = state.abbrev;
+          //option.textContent = state.name;
+          //------------------------
+          //Another way is provided below, shortcut is available for only a few stuff
+          //------------------------
+          let option = new Option(state.name, state.abbrev);
+          let p = document.createElement("p");
+          statesList.appendChild(option);
+        }
+      }
+
+      function findStateByAbbrev(abbreviation) {
+        for (const state of states) {
+          if (state.abbrev == abbreviation) {
+            return state;
+          }
+        }
+      }
+
+      function displaySelectedState() {
+        const messageParagraph = document.querySelector("#message-paragraph");
+        const stateAbbreviation = statesList.value;
+
+        const selectedState = findStateByAbbrev(stateAbbreviation);
+
+        messageParagraph.innerText = `(${selectedState.abbrev}): ${selectedState.name}'s NFL Team is called ${selectedState.team}`;
+      }
+
+      loadStatesList();
+    </script>
+  </body>
+</html>
