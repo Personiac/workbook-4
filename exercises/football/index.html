@@ -75,7 +75,7 @@
         }
       }
 
-      function findStateByAbbrev(abbreviation) {
+      function findStateByAbbrev(abbreviation) { //3
         for (const state of states) {
           if (state.abbrev == abbreviation) {
             return state;
@@ -85,10 +85,8 @@
 
       function displaySelectedState() {
         const messageParagraph = document.querySelector("#message-paragraph");
-        const stateAbbreviation = statesList.value;
-
-        const selectedState = findStateByAbbrev(stateAbbreviation);
-
+        const stateAbbreviation = statesList.value; //1
+        const selectedState = findStateByAbbrev(stateAbbreviation); //2
         messageParagraph.innerText = `(${selectedState.abbrev}): ${selectedState.name}'s NFL Team is called ${selectedState.team}`;
       }
 

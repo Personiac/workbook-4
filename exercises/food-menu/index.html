@@ -10,6 +10,7 @@
   <body>
     <main>
       <select id="category-list" onchange="loadItemList();">
+        <option value="">Select Option Category</option>
         <option value="dessert">Dessert</option>
         <option value="drinks">Drinks</option>
         <option value="entrees">Entrees</option>
@@ -38,14 +39,12 @@
 
         desserts: ["Cheesecake", "Chocolate Cake", "Snickerdoodle Cookie"],
       };
-
-      let selectedMenuOption = document.createElement("option");
-        selectedMenuOption.value = " ";
-        selectedMenuOption.textContent = "Select Option...";
-        menuItems.appendChild(selectedMenuOption);
         
       function loadItemList() { 
         switch (categoryList.value) {
+            case "":
+            //code stuff
+            displayMenuItems();
             case "dessert":
             //code stuff
             displayMenuItems(menu.desserts);

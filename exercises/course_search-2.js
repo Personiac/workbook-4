@@ -93,18 +93,18 @@ function courseSearch(courseList) {
 
 function getCourses2023(courseList, startingYear) {
   
-  let startsIn2023 = [];
+  let startsIn20XX = [];
   
   for (const course of courseList) {
     if (course.StartDate.endsWith(startingYear)) {
-      startsIn2023.push(course);
+      startsIn20XX.push(course);
     }  
   }
   console.log(`Here is a list of all the courses that start in 20${startingYear}:`);
-  for (const course of startsIn2023) {
+  for (const course of startsIn20XX) {
     console.log(`${course.CourseId}: ${course.StartDate} `);
   }
-  return startsIn2023;
+  return startsIn20XX;
 }
 
 
